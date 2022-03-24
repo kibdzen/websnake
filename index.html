@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      } /* to remove the top and left whitespace */
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      } /* just to be sure these are full screen*/
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      } /* To remove the scrollbars */
+    </style>
   </head>
 
   <body>
@@ -21,6 +39,9 @@
       var heightInBlocks = height / blockSize;
 
       var score = 0;
+
+
+
 
       var drawBorder = function () {
         ctx.fillStyle = "Gray";
@@ -164,47 +185,36 @@
         }
       });
 
-
-
-
-
       let event = null;
 
-document.addEventListener("touchstart", function (e) {
-  event = e;
-});
-document.addEventListener("touchmove", function (e) {
-  if (event) {
-    dY = e.touches[0].pageY - event.touches[0].pageY;
-    dX = e.touches[0].pageX - event.touches[0].pageX;
+      document.addEventListener("touchstart", function (e) {
+        event = e;
+      });
+      document.addEventListener("touchmove", function (e) {
+        if (event) {
+          dY = e.touches[0].pageY - event.touches[0].pageY;
+          dX = e.touches[0].pageX - event.touches[0].pageX;
 
-    if (dY > dX) {
-      if (dY > 0) {
-        newDirection = "down";
-      } else {
-        newDirection = "left";
-      }
-    } else {
-      if (dX > 0) {
-        newDirection = "right";
-      } else {
-        newDirection = "up";
-      }
-    }
-    snake.setDirection(newDirection);
-    console.log("now-",newDirection,' ',dY,'===',dX)
-  }
-});
-document.addEventListener("touchend", function (e) {
-  event = null;
-});
-
-
-
-
-
-
-
+          if (dY > dX) {
+            if (dY > 0) {
+              newDirection = "down";
+            } else {
+              newDirection = "left";
+            }
+          } else {
+            if (dX > 0) {
+              newDirection = "right";
+            } else {
+              newDirection = "up";
+            }
+          }
+          snake.setDirection(newDirection);
+          console.log("now-", newDirection, " ", dY, "===", dX);
+        }
+      });
+      document.addEventListener("touchend", function (e) {
+        event = null;
+      });
 
       var Apple = function () {
         this.position = new Block(20, 20);
@@ -230,9 +240,7 @@ document.addEventListener("touchend", function (e) {
         snake.draw();
         apple.draw();
         drawBorder();
-      }, 500);
-
-      
+      }, 100);
     </script>
   </body>
 </html>
