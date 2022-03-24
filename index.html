@@ -26,7 +26,7 @@
   </head>
 
   <body>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <canvas id="canvas" width="400" height="800"></canvas>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
       var canvas = document.getElementById("canvas");
@@ -195,21 +195,21 @@
           dY = e.touches[0].pageY - event.touches[0].pageY;
           dX = e.touches[0].pageX - event.touches[0].pageX;
 
-          if (dY > dX) {
+          if (Math.abs(dY) > Math.abs(dX)) {
             if (dY > 0) {
               newDirection = "down";
             } else {
-              newDirection = "left";
+              newDirection = "up";
             }
           } else {
             if (dX > 0) {
               newDirection = "right";
             } else {
-              newDirection = "up";
+              newDirection = "left";
             }
           }
           snake.setDirection(newDirection);
-          console.log("now-", newDirection, " ", dY, "===", dX);
+         // console.log("now-", newDirection, " ", dY, "===", dX);
         }
       });
       document.addEventListener("touchend", function (e) {
